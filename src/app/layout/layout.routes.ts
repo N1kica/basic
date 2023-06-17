@@ -1,14 +1,14 @@
-import { Routes } from '@angular/router';
+import { Routes } from "@angular/router";
 
 export const layoutRoutes: Routes = [
   {
-    path: '',
+    path: "",
     loadComponent: () =>
-      import('../home/home.component').then((m) => m.HomeComponent),
+      import("../home/home.component").then((m) => m.HomeComponent)
   },
   {
-    path: '**',
-    redirectTo: '',
-    pathMatch: 'full',
-  },
+    path: "**",
+    redirectTo: "",
+    pathMatch: "full"
+  }
 ];
