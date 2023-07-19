@@ -1,14 +1,17 @@
 import { ChangeDetectionStrategy, Component } from "@angular/core";
-import { NavbarComponent } from "./ui/navbar.component";
+import { HeaderComponent } from "./ui/header.component";
 import { RouterOutlet } from "@angular/router";
 
 @Component({
   selector: "app-layout",
   standalone: true,
-  imports: [NavbarComponent, RouterOutlet],
+  imports: [HeaderComponent, RouterOutlet],
   template: `
     <app-navbar />
-    <router-outlet />
+    <main class="py-20">
+      <router-outlet />
+    </main>
+
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

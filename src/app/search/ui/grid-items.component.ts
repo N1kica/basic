@@ -1,0 +1,31 @@
+import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
+import {AsyncPipe, NgFor, NgIf} from '@angular/common';
+import {Product} from "../search.component";
+
+@Component({
+  selector: 'app-grid-items',
+  standalone: true,
+  imports: [AsyncPipe, NgFor, NgIf],
+  template: `
+     <div *ngFor="let product of products" class="grid grid-cols-1 sm:grid-cols-[1fr_2fr] items-center sm:items-start gap-8 bg-white px-10 py-8 rounded-xl group">
+        <div class="flex justify-center items-center h-full">
+          <img [src]="product.image" class="transition-transform hover:scale-110 max-h-[200px] cursor-pointer"/>
+        </div>
+        <div class="lg:flex h-full">
+          <div class="mb-4">
+            <h4>{{ product.name }}</h4>
+            <h2>{{ product.model }}</h2>
+            <p>{{ product.description }}</p>
+          </div>
+          <div class="flex flex-col items-center sm:items-start lg:items-end gap-4 justify-between">
+            <h3 class="text-teal-500 font-bold sm:text-right self-start lg:self-end">{{ product.price }}</h3>
+            <button class="transition-[opacity,background,color] opacity-0 group-hover:opacity-100 hover:text-white hover:bg-neutral-500 duration-500 font-semibold border border-slate-500 text-slate-700 rounded-3xl py-3 min-w-[10rem] max-w-[15rem]">Više</button>
+          </div>
+        </div>
+     </div>
+  `,
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class GridItemsComponent {
+  @Input() products?: Product[] | null;
+}
