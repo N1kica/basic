@@ -17,6 +17,6 @@
     @apply font-semibold;
   }
   button {
-    
+    @apply rounded-3xl py-3 min-w-[10rem] max-w-[15rem] font-semibold border
   }
 }

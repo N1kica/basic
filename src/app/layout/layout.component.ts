@@ -8,10 +8,9 @@ import { RouterOutlet } from "@angular/router";
   imports: [HeaderComponent, RouterOutlet],
   template: `
     <app-navbar />
-    <main class="py-20">
+    <main class="py-20 px-8">
       <router-outlet />
     </main>
-
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

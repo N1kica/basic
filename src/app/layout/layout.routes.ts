@@ -12,8 +12,13 @@ export const layoutRoutes: Routes = [
       import("../search/search.component").then((m) => m.SearchComponent)
   },
   {
-    path: "**",
-    redirectTo: "",
-    pathMatch: "full"
-  }
+    path: "product",
+    loadComponent: () =>
+      import("../product/product.component").then((m) => m.ProductComponent)
+  },
+  {
+    path: "product/:uid",
+    loadComponent: () =>
+      import("../product/product.component").then((m) => m.ProductComponent)
+  },
 ];

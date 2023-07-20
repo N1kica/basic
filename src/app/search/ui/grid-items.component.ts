@@ -1,13 +1,15 @@
 import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 import {AsyncPipe, NgFor, NgIf} from '@angular/common';
 import {Product} from "../search.component";
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-grid-items',
   standalone: true,
-  imports: [AsyncPipe, NgFor, NgIf],
+  imports: [AsyncPipe, NgFor, NgIf, RouterLink],
   template: `
-     <div *ngFor="let product of products" class="grid grid-cols-1 sm:grid-cols-[1fr_2fr] items-center sm:items-start gap-8 bg-white px-10 py-8 rounded-xl group">
+    <ng-container *ngIf="products; else loading">
+      <div *ngFor="let product of products" class="grid grid-cols-1 sm:grid-cols-[1fr_2fr] items-center sm:items-start gap-8 bg-white px-10 py-8 rounded-xl group">
         <div class="flex justify-center items-center h-full">
           <img [src]="product.image" class="transition-transform hover:scale-110 max-h-[200px] cursor-pointer"/>
         </div>
@@ -19,10 +21,17 @@ import {Product} from "../search.component";
           </div>
           <div class="flex flex-col items-center sm:items-start lg:items-end gap-4 justify-between">
             <h3 class="text-teal-500 font-bold sm:text-right self-start lg:self-end">{{ product.price }}</h3>
-            <button class="transition-[opacity,background,color] opacity-0 group-hover:opacity-100 hover:text-white hover:bg-neutral-500 duration-500 font-semibold border border-slate-500 text-slate-700 rounded-3xl py-3 min-w-[10rem] max-w-[15rem]">Više</button>
+            <button
+              class="transition-[opacity,background,color] opacity-0 group-hover:opacity-100 hover:text-white hover:bg-neutral-500 duration-500 border-slate-500 text-slate-700"
+              [routerLink]="['/product', product.uid]"
+            >Više</button>
           </div>
         </div>
-     </div>
+      </div>
+    </ng-container>
+    <ng-template #loading>
+      loading...
+    </ng-template>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
